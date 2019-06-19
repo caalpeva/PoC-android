@@ -1,4 +1,4 @@
-package team.boolbee.hereco.poc_sms;
+package team.boolbee.hereco.activity;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package team.boolbee.hereco.poc_sms;
+package team.boolbee.hereco.activity;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
