@@ -21,6 +21,8 @@ private const val EXTRA_PARAM2 = "team.boolbee.poc.android.storage.core.services
  */
 class MyIntentService : IntentService{
 
+
+
     constructor(name: String) : super(name) {
 
     }

@@ -1,5 +1,6 @@
 package team.boolbee.poc.android.storage.ui.activities
 
+import android.net.Uri
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -12,11 +13,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 import team.boolbee.poc.android.storage.R
+import team.boolbee.poc.android.storage.ui.fragments.BaseServiceFragment
 import team.boolbee.poc.android.storage.ui.fragments.TelephonyFragment
 import team.boolbee.poc.android.storage.ui.fragments.dummy.DummyContent
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
-    TelephonyFragment.OnListFragmentInteractionListener {
+    TelephonyFragment.OnListFragmentInteractionListener, BaseServiceFragment.OnFragmentInteractionListener {
+    override fun onFragmentInteraction(uri: Uri) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     override fun onListFragmentInteraction(item: DummyContent.DummyItem?) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -85,10 +90,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
             R.id.nav_tools -> {
-                supportFragmentManager.beginTransaction().replace(R.id.view_container, TelephonyFragment.newInstance(1)).commit()
+                supportFragmentManager.beginTransaction().replace(R.id.view_container, BaseServiceFragment.newInstance()).commit()
             }
             R.id.nav_share -> {
-
+                supportFragmentManager.beginTransaction().replace(R.id.view_container, TelephonyFragment.newInstance(1)).commit()
             }
             R.id.nav_send -> {
 

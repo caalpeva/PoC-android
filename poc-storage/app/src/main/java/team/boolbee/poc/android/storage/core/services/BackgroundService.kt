@@ -3,13 +3,10 @@ package team.boolbee.poc.android.storage.core.services
 import android.app.IntentService
 import android.content.Intent
 import android.content.Context
+import android.util.Log
 
-// TODO: Rename actions, choose action names that describe tasks that this
-private const val ACTION_FOO = "team.boolbee.poc.android.storage.core.services.action.FOO"
-
-// TODO: Rename parameters
-private const val EXTRA_PARAM1 = "team.boolbee.poc.android.storage.core.services.extra.PARAM1"
-private const val EXTRA_PARAM2 = "team.boolbee.poc.android.storage.core.services.extra.PARAM2"
+public const val ACTION_SERVICE_STARTED = "services.action.SERVICE_STARTED"
+public const val ACTION_SERVICE_STOPPED = "services.action.SERVICE_STOPPED"
 
 /**
  * An [IntentService] subclass for handling asynchronous task requests in
@@ -23,17 +20,17 @@ class BackgroundService : CustomIntentService {
 
     override fun getTag() = TAG
 
+    constructor() : super("fdfs", true, false, false) {
+
+    }
+
     constructor(name: String) : super(name, true, false, false) {
     }
 
     override fun onHandleIntent(intent: Intent?) {
-        when (intent?.action) {
-            ACTION_FOO -> {
-                val param1 = intent.getStringExtra(EXTRA_PARAM1)
-                val param2 = intent.getStringExtra(EXTRA_PARAM2)
-                handleActionFoo(param1, param2)
-            }
-        }
+        val intent = Intent(ACTION_SERVICE_STARTED)
+        sendBroadcast(intent)
+        Log.d(getTag(), "onHandleIntent")
     }
 
     /**
@@ -43,22 +40,22 @@ class BackgroundService : CustomIntentService {
     private fun handleActionFoo(param1: String, param2: String) {
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        val intent = Intent(ACTION_SERVICE_STOPPED)
+        sendBroadcast(intent)
+    }
+
     companion object {
-        /**
-         * Starts this service to perform action Foo with the given parameters. If
-         * the service is already performing a task this action will be queued.
-         *
-         * @see IntentService
-         */
-        // TODO: Customize helper method
         @JvmStatic
-        fun startActionFoo(context: Context, param1: String, param2: String) {
-            val intent = Intent(context, BackgroundService::class.java).apply {
-                action = ACTION_FOO
-                putExtra(EXTRA_PARAM1, param1)
-                putExtra(EXTRA_PARAM2, param2)
-            }
+        fun startActionFoo(context: Context) {
+            val intent = Intent(context, BackgroundService::class.java)
             context.startService(intent)
+        }
+
+        fun stop(context: Context) {
+            val intent = Intent(context, BackgroundService::class.java)
+            context.stopService(intent)
         }
     }
 }
