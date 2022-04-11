@@ -33,7 +33,7 @@ import com.google.gson.JsonObject;
  */
 public class Messaging {
 
-	private static String PROJECT_ID; //"mdemo-2f0d8";
+	private static String PROJECT_ID;
 	private static final String BASE_URL = "https://fcm.googleapis.com";
 	//private static String FCM_SEND_ENDPOINT = "/v1/projects/" + PROJECT_ID + "/messages:send";
 
